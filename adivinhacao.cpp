@@ -1,5 +1,8 @@
 #include <iostream> //i=include=Entrada o=Output=Saida STREAM=fluxo
+#include <cstdlib> //para usar a função rand de número aleátorios
+#include <ctime> //funcao para usar o time
 using namespace std;
+
 
 
 int main(){
@@ -7,7 +10,9 @@ int main(){
     cout <<"*Bem vindos ao jogo da adivinhacao!*" << endl;
     cout <<"************************************" << endl;
 
-    const int SECRET_NUMBER = 47;
+    srand(time(NULL));
+    const int SECRET_NUMBER = rand() % 100;
+
     bool notHit = true;
     int attempts = 0;
 
