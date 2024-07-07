@@ -3,23 +3,40 @@
 #include <ctime> //funcao para usar o time
 using namespace std;
 
-
-
 int main(){
     cout <<"************************************" << endl;
     cout <<"*Bem vindos ao jogo da adivinhacao!*" << endl;
-    cout <<"************************************" << endl;
+    cout <<"************************************" << endl <<endl ;
+
+    //mensagem para escolher o nivel de dificuldade
+    cout << "Escolha o seu nível de dificuldade"<< endl;
+    cout << "Facil(F); Medio(M) ou Dificil(D)"<< endl <<endl;
+
+    char dificulty; //char por ser um caractere que irá passar
+    cin >> dificulty;
+
+    int numberAttemps;
+    // if para determinar quantas tentativas cada um tem
+    if (dificulty == 'F'){
+        numberAttemps = 15;
+    } else if(dificulty = 'M'){
+        numberAttemps = 10;
+    } else {
+        numberAttemps = 5;
+    }
+
 
     srand(time(NULL));
     const int SECRET_NUMBER = rand() % 100;
+
+    //const int SECRET_NUMBER = 47;
 
     bool notHit = true;
     int attempts = 0;
 
     double points = 1000.0;
 
-    while(notHit){
-        attempts++;
+    for(attempts = 1; attempts <= numberAttemps; attempts++){
         int shot;
 
         cout << "Tentativa " << attempts <<endl;
@@ -39,17 +56,25 @@ int main(){
         if(hit){
             cout << "Parabens voce acertou o numero secreto" << endl;
             notHit = false;
+            break; // para quebrar o laço de repetição
         } else if(biggerHit){
-            cout << "O numero que voce chutou e maior que o numero secreto" << endl;  
+            cout << "O numero que voce chutou e maior que o numero secreto" << endl <<endl;  
         } else{
-            cout << "O numero que voce chutou e menor que o numero secreto" << endl;
+            cout << "O numero que voce chutou e menor que o numero secreto" << endl <<endl;
         }
 
     } 
+
     cout << "GAME'S OVER"<< endl;
-    cout << "Voce acertou o numero secreto em: " << attempts << " tentativas"<< endl;
-    cout.precision(2); //para setar quantos números após a virgula nois queremos
-    cout << fixed; //para não sair na notação cientifica
-    cout << "Sua pontuacao foi de " << points << " pontos" << endl;
+
+    if(notHit){
+        cout << "Você perdeu! Tente novamente" <<endl;
+    } else{
+        cout << "Voce acertou o numero secreto em: " << attempts << " tentativas"<< endl;
+        cout.precision(2); //para setar quantos números após a virgula nois queremos
+        cout << fixed; //para não sair na notação cientifica
+        cout << "Sua pontuacao foi de " << points << " pontos" << endl;
+        
+    }
 
 }
